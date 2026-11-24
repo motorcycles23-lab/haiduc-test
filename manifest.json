@@ -1,11 +1,18 @@
 {
-  "background_color": "#ffffff",
-  "dir": "ltr",
-  "display": "standalone",
-  "name": "Haiduc Bear",
-  "orientation": "any",
-  "scope": "/",
+  "name": "Haiduc Bear — Hartă Montană & Monitorizare Urși",
   "short_name": "Haiduc Bear",
-  "start_url": "/",
-  "theme_color": "#ffffff"
+  "description": "Alerte montane și semnalări de urși în timp real, pentru drumeți.",
+  "lang": "ro",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#172e1f",
+  "theme_color": "#143624",
+  "categories": ["navigation", "travel", "safety"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
 }
