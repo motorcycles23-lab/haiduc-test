@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#143624" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/png" href="icons/icon-192.png" />
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Haiduc Bear" />
@@ -25,6 +25,20 @@
       padding: 0;
       overflow: hidden;
       font-family: "Inter", system-ui, -apple-system, sans-serif;
+    }
+    /* ---- Așezare jos: bară (LIVE + Powered by), apoi atribuire, apoi zoom +/- și butoane ---- */
+    .hb-bottom-cluster { bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); }
+    /* Butoanele +/− sunt mutate în afara hărții (harta are z-0 și le-ar ține sub panou), deasupra panoului și a barei de jos */
+    .hb-zoom { position: fixed !important; left: 12px; bottom: calc(3rem + env(safe-area-inset-bottom, 0px)); z-index: 600 !important; margin: 0 !important; float: none !important; }
+    @media (min-width: 640px) { .hb-zoom { left: 392px; } } /* ecran mare: lângă panou */
+    @media (max-width: 639px) {
+      .hb-bottom-cluster { bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px)); }
+      .hb-zoom { bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px)); }
+      .leaflet-bottom.leaflet-right { right: auto; left: 0; width: 100%; text-align: center; bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
+      .leaflet-bottom.leaflet-right .leaflet-control { float: none; display: inline-block; margin: 0; }
+      #syncStatusPill { max-width: calc(100vw - 11rem); }
+      #sideDrawer { bottom: calc(5rem + env(safe-area-inset-bottom, 0px)); } /* panoul de trasee nu mai acoperă bara de jos */
+      #syncStatusText { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     }
     .bear-pulse {
       animation: bearPulseAnim 1.8s infinite;
@@ -155,14 +169,18 @@
     <div id="tabContentTrails" class="flex-1 overflow-y-auto p-3 space-y-2.5">
       <div class="flex items-center justify-between gap-2">
         <select id="massifFilterSelect" class="w-full bg-slate-100 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-800 focus:outline-none">
-          <option value="all">Toți munții (Bucegi, Făgăraș, Piatra Craiului, Postăvaru, Ciucaș, Ceahlău)</option>
+          <option value="all">Toți munții (Bucegi, Baiului, Făgăraș, Piatra Craiului, Postăvaru, Ciucaș, Ceahlău)</option>
           <option value="Bucegi">Munții Bucegi</option>
           <option value="Făgăraș">Munții Făgăraș (Moldoveanu, Negoiu, Podragu)</option>
           <option value="Piatra Craiului">Munții Piatra Craiului</option>
           <option value="Postăvaru">Masivul Postăvaru</option>
+          <option value="Baiului">Munții Baiului (Azuga, Predeal, Sinaia)</option>
           <option value="Ciucaș">Masivul Ciucaș (Muntele Roșu)</option>
           <option value="Ceahlău">Masivul Ceahlău</option>
         </select>
+      </div>
+      <div class="text-[10px] leading-snug text-slate-500 bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5">
+        ⚠️ Liniile de pe hartă sunt <strong>orientative</strong>. Urmează marcajele din teren și o hartă turistică oficială; verifică vremea și starea traseului la Salvamont.
       </div>
       <div id="trailsListContainer" class="space-y-2"></div>
 
@@ -204,7 +222,7 @@
       </div>
       <div>
         <select id="shelterMassifFilterSelect" class="w-full bg-slate-100 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-800 focus:outline-none">
-          <option value="all">Toate refugiile și cabanele (16)</option>
+          <option value="all">Toate refugiile, cabanele și sursele de apă</option>
           <option value="Bucegi">Munții Bucegi</option>
           <option value="Făgăraș">Munții Făgăraș</option>
           <option value="Piatra Craiului">Munții Piatra Craiului</option>
@@ -215,7 +233,7 @@
       <div id="sheltersListContainer" class="space-y-2"></div>
     </div>
   </aside> <!-- Butoane plutitoare dreapta-jos: Straturi hartă, Busolă, Lanternă SOS, Locație GPS, Semnalează Urs -->
-  <div class="fixed bottom-4 right-3 z-[500] flex flex-col items-end gap-2" style="bottom: calc(1rem + env(safe-area-inset-bottom, 0px));">
+  <div class="fixed right-3 z-[500] flex flex-col items-end gap-2 hb-bottom-cluster">
     <!-- Meniu strâns: straturi hartă + instrumente (se deschide din butonul ☰) -->
     <div id="quickMenuPanel" class="hidden flex-col items-end gap-2">
     <!-- Selector straturi hartă -->
@@ -259,8 +277,8 @@
     </div>
   </div>
 
-  <!-- Insignă discretă jos-stânga/centru: Powered by haiduc -->
-  <div class="fixed bottom-2.5 left-1/2 -translate-x-1/2 z-[400] pointer-events-none hidden sm:flex items-center gap-2 bg-slate-900/90 backdrop-blur-md text-white/95 px-3.5 py-1.5 rounded-full border border-white/20 shadow-lg text-[11px] font-medium">
+  <!-- Insignă jos: Powered by haiduc (dreapta pe telefon, centru pe ecran mare) -->
+  <div style="bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px));" class="fixed right-3 sm:right-auto sm:left-1/2 sm:-translate-x-1/2 z-[400] pointer-events-none flex items-center gap-2 bg-slate-900/90 backdrop-blur-md text-white/95 px-3.5 py-1.5 rounded-full border border-white/20 shadow-lg text-[11px] font-medium">
     <span class="text-white/75">Powered by</span>
     <span class="inline-flex flex-col items-center justify-center bg-black/95 border border-white/25 rounded-lg px-2 py-0.5 leading-none shadow-inner">
       <svg width="22" height="22" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Copac Haiduc">
@@ -490,7 +508,14 @@
         zoomControl: false
       });
 
-      L.control.zoom({ position: "bottomleft" }).addTo(map);
+      const zoomControl = L.control.zoom({ position: "bottomleft" }).addTo(map);
+      try {
+        const zoomEl = zoomControl.getContainer();
+        if (zoomEl instanceof Node) {
+          document.body.appendChild(zoomEl); // în afara hărții: rămâne vizibil deasupra panoului
+          zoomEl.classList.add("hb-zoom");
+        }
+      } catch (e) { /* dacă nu reușește, butoanele rămân unde le pune Leaflet */ }
 
       const tileLayers = {
         street: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
@@ -519,7 +544,7 @@
         { id: "t4", massif: "Bucegi", name: "Peștera – Valea Obârșiei – Vârful Omu", mark: "Bandă Albastră", color: "#2563eb", duration: "3h 15m", difficulty: "Mediu-Dificil", coords: [[45.3948, 25.4375], [45.4180, 25.4450], [45.4469, 25.4561]] },
         { id: "t5", massif: "Bucegi", name: "Padina – Șaua Strunga – Cabana Guțanu", mark: "Bandă Roșie", color: "#dc2626", duration: "2h 30m", difficulty: "Mediu", coords: [[45.3832, 25.4358], [45.3940, 25.4220], [45.4035, 25.4125]] },
         { id: "t6", massif: "Bucegi", name: "Sinaia (Cota 1400) – Vârful cu Dor – Babele", mark: "Bandă Galbenă", color: "#eab308", duration: "3h 30m", difficulty: "Mediu", coords: [[45.3495, 25.5180], [45.3578, 25.4910], [45.3845, 25.4815], [45.4086, 25.4731]] },
-        { id: "t7", massif: "Bucegi", name: "Bran (Poarta) – Valea Gaura – Vârful Omu", mark: "Cruce Roșie", color: "#dc2626", duration: "5h 30m", difficulty: "Dificil", coords: [[45.5120, 25.3820], [45.4780, 25.4180], [45.4469, 25.4561]] },
+        { id: "t7", massif: "Bucegi", name: "Bran (Poarta) – Valea Gaura – Vârful Omu", mark: "Cruce Roșie", color: "#dc2626", duration: "~9h", difficulty: "Dificil", note: "Durata corectată după ghidul Parcului Natural Bucegi (~9 ore până la Cabana Omu). Pleacă dimineața devreme.", coords: [[45.5120, 25.3820], [45.4780, 25.4180], [45.4469, 25.4561]] },
         { id: "t8", massif: "Bucegi", name: "Vârful Omu – Valea Cerbului – Bușteni", mark: "Bandă Galbenă", color: "#ca8a04", duration: "5h 00m", difficulty: "Dificil", coords: [[45.4469, 25.4561], [45.4390, 25.4920], [45.4112, 25.5345]] },
         { id: "t21", massif: "Bucegi", name: "Bușteni – Valea Albă – Brâul Mare al Caraimanului", mark: "Punct Roșu", color: "#dc2626", duration: "4h 30m", difficulty: "Foarte Dificil", coords: [[45.4112, 25.5345], [45.4165, 25.5155], [45.4205, 25.4985], [45.4145, 25.4978]] },
 
@@ -538,7 +563,29 @@
         { id: "t24", massif: "Ciucaș", name: "Muntele Roșu – Șaua Chirușca – Vârful Ciucaș (1.954 m)", mark: "Bandă Roșie", color: "#dc2626", duration: "3h 00m", difficulty: "Mediu", coords: [[45.5020, 25.9550], [45.5145, 25.9320], [45.5238, 25.9212]] },
         { id: "t25", massif: "Ciucaș", name: "Cheia – Cabana Muntele Roșu – Culmea Gropșoarele – Vârful Ciucaș", mark: "Cruce Roșie + Bandă Roșie", color: "#dc2626", duration: "4h 30m", difficulty: "Mediu-Dificil", coords: [[45.4565, 25.9410], [45.5020, 25.9550], [45.5180, 25.9385], [45.5238, 25.9212]] },
         { id: "t19", massif: "Ceahlău", name: "Izvorul Muntelui – Cabana Dochia – Vârful Toaca (1.904 m)", mark: "Bandă Albastră", color: "#2563eb", duration: "3h 45m", difficulty: "Mediu", coords: [[46.9420, 25.9820], [46.9685, 25.9485], [46.9765, 25.9470]] },
-        { id: "t20", massif: "Ceahlău", name: "Durău – Cascada Duruitoarea – Cabana Dochia", mark: "Cruce Roșie", color: "#dc2626", duration: "4h 15m", difficulty: "Mediu-Dificil", coords: [[46.9985, 25.9210], [46.9820, 25.9360], [46.9685, 25.9485]] }
+        { id: "t20", massif: "Ceahlău", name: "Durău – Cascada Duruitoarea – Cabana Dochia", mark: "Cruce Roșie", color: "#dc2626", duration: "4h 15m", difficulty: "Mediu-Dificil", coords: [[46.9985, 25.9210], [46.9820, 25.9360], [46.9685, 25.9485]] },
+
+        // ===== Trasee adăugate (informații verificate din ghiduri; liniile de pe hartă sunt orientative) =====
+        // Bucegi — fără linie pe hartă deocamdată (coordonate neverificate)
+        { id: "t26", massif: "Bucegi", name: "Sinaia – Poteca Regală – Poiana Stânii Regale (Stâncile Franz Joseph)", mark: "Bandă Albastră", color: "#2563eb", duration: "1h – 2h", difficulty: "Ușor", note: "Aprox. 1,7 km, pornind de la Cabana Schiori. Plimbare scurtă, potrivită și pentru familii." },
+        { id: "t27", massif: "Bucegi", name: "Sinaia – Poiana Stânii – Piciorul Pietrei Arse – Cabana Piatra Arsă", mark: "Bandă Albastră", color: "#2563eb", duration: "3h – 3h 30m", difficulty: "Mediu", note: "Iarna: risc de avalanșă în golul alpin. Salvamont închide traseul pe vreme rea (ninsoare, ceață) — verifică înainte de plecare." },
+        { id: "t28", massif: "Bucegi", name: "Râșnov (Uzina Electrică) – Glăjărie – Cabana Mălăiești", mark: "Bandă Albastră", color: "#2563eb", duration: "~5h – 6h 30m", difficulty: "Mediu-Dificil", note: "Aprox. 18 km și ~1.050 m urcare. Sursele diferă ca durată (5–6h30): pleacă dimineața devreme." },
+        { id: "t29", massif: "Bucegi", name: "Bușteni – Poiana Pichetul Roșu – Cabana Mălăiești", mark: "Triunghi Roșu (până la Pichetul Roșu)", color: "#dc2626", duration: "5h 30m – 6h 15m", difficulty: "Mediu-Dificil", note: "Iarna inaccesibil între Pichetul Roșu și Mălăiești. Sector cu lanțuri." },
+        { id: "t30", massif: "Bucegi", name: "Bușteni – Cabana Gura Diham – Cabana Diham", mark: "Marcaj neconfirmat — urmează indicatoarele din teren", color: "#64748b", duration: "~3h", difficulty: "Mediu", note: "Durata și dificultatea provin dintr-un ghid general al Parcului Natural Bucegi; marcajul nu a fost confirmat." },
+        { id: "t31", massif: "Bucegi", name: "Bran (Poarta) – Valea Ciubotea – Cabana Omu", mark: "Marcaj neconfirmat — urmează indicatoarele din teren", color: "#64748b", duration: "~7h", difficulty: "Mediu", note: "Durata și dificultatea provin dintr-un ghid general al Parcului Natural Bucegi; marcajul nu a fost confirmat." },
+        { id: "t32", massif: "Bucegi", name: "Cabana Zănoaga – Cheile Orzei – Lacul Scropoasa (circuit)", mark: "Marcaj neconfirmat — urmează indicatoarele din teren", color: "#64748b", duration: "~2h 50m", difficulty: "Mediu", note: "ACCES ÎNTRERUPT: Salvamont Dâmbovița a anunțat în august 2026 că podul din zona Zănoaga s-a rupt, iar accesul spre Lacul Scropoasa și Cascada 7 Izvoare e întrerupt. Verifică la Salvamont înainte de plecare. Circa 8,2 km." },
+        // Piatra Craiului — informații furnizate de proprietarul aplicației, cu linie orientativă
+        { id: "t33", massif: "Piatra Craiului", name: "Zărnești – Prăpăstiile Zărneștilor – Cabana Curmătura", mark: "Bandă Albastră", color: "#2563eb", duration: "40 min (Prăpăstii) + 1h 30m – 2h", difficulty: "Ușor-Mediu", note: "Durata: 40 min până la Prăpăstiile Zărneștilor, apoi 1h30–2h de la indicatoarele din dreptul Cheilor Pisicii. Iarna devine dificil.", coords: [[45.5595, 25.2910], [45.5560, 25.2740], [45.5418, 25.2495]] },
+        { id: "t34", massif: "Piatra Craiului", name: "Cabana Curmătura – Poiana Zănoaga – Fântâna lui Botorog – Zărnești", mark: "Bandă Galbenă", color: "#eab308", duration: "2h – 2h 30m", difficulty: "Ușor", note: "Iarna devine dificil.", coords: [[45.5418, 25.2495], [45.5560, 25.2740], [45.5595, 25.2910]] },
+
+        // ===== Munții Baiului / Valea Prahovei (Azuga, Predeal, Sinaia, Bușteni) — fără linie pe hartă deocamdată =====
+        { id: "t35", massif: "Baiului", name: "Gara Azuga – Culmea Grecului – Șaua Baiului (spre Cabana Diham)", mark: "Triunghi Galben", color: "#eab308", duration: "1h 30m – 1h 45m", difficulty: "Mediu", note: "Aprox. 5,5 km și ~560 m urcare. Iarna, cu zăpadă mare, durează ~3h30. Din Șaua Baiului se continuă spre Cabana Diham." },
+        { id: "t36", massif: "Baiului", name: "Predeal – Culmea Clăbucetul Baiului – Șaua Baiului", mark: "Bandă Albastră", color: "#2563eb", duration: "2h 15m – 2h 45m", difficulty: "Mediu", note: "Aprox. 7,1 km și ~510 m urcare. Potrivit pentru cei obișnuiți cu urcări de peste 500 m." },
+        { id: "t37", massif: "Baiului", name: "Predeal – Valea Iadului (Valea Leucii) – Șaua Baiului", mark: "Triunghi Roșu", color: "#dc2626", duration: "~1h 45m", difficulty: "Mediu", note: "Aprox. 4,7 km, în mare parte pe drum forestier. Urcare ușoară, ~400 m." },
+        { id: "t38", massif: "Baiului", name: "Predeal – Cabana Gârbova – Azuga (peste Clăbucetul Taurului)", mark: "Marcaj neconfirmat — urmează indicatoarele din teren", color: "#64748b", duration: "4h 45m – 6h", difficulty: "Mediu", note: "Aprox. 9,5 km; ~565 m urcare și ~630 m coborâre. Până la Cabana Gârbova se poate urca și cu telescaunul." },
+        { id: "t39", massif: "Baiului", name: "Azuga (Valea Azugii) – Drumul lui Ceaușescu – Cabana Susai", mark: "Triunghi Albastru", color: "#2563eb", duration: "Durată neconfirmată", difficulty: "Neconfirmată", note: "Pornește din Azuga pe Valea Azugii (Păstrăvăria Limbășel). Am marcajul din ghid, dar nu și durata sau dificultatea — verifică înainte de plecare." },
+        { id: "t40", massif: "Baiului", name: "Bușteni – Culmea Zamora – Vf. Cazacu – Plaiul Orjogoaia – Trăisteni (Valea Doftanei)", mark: "Cruce Roșie", color: "#dc2626", duration: "Durată neconfirmată", difficulty: "Neconfirmată", note: "Orientare grea pe ceață: marcajele sunt aproape inexistente între șaua de sub Vf. lui Petru și pădurea Orjogoaia. Salvamont poate închide traseul iarna. Conform ghidului, pe varianta de sub Vf. Cazacu se întâlnesc două izvoare (informativ; pot fi secate)." },
+        { id: "t41", massif: "Baiului", name: "Creasta Munților Baiului (Azuga – Baiul Mic – Baiul Mare – Piscul Câinelui – Sinaia)", mark: "Bandă Roșie (marcajul principal de creastă)", color: "#dc2626", duration: "Durată neconfirmată", difficulty: "Neconfirmată", note: "Traseul clasic, foarte aglomerat. Drumul de culme ocolește vârfurile mari (Baiul Mare, 1.895 m). Vizibilitate redusă = risc de rătăcire; coborârea spre Sinaia pe Piscul Câinelui (Punct Albastru) e abruptă." }
       ];
 
       /* ============================================================
@@ -560,7 +607,9 @@
         { id: "s13", name: "Cabana Podragu", massif: "Făgăraș", alt: "2.136 m", type: "Cabană alpină", lat: 45.6085, lng: 24.6915, phone: "0744 634 891", details: "Cabană glaciară celebră în Făgăraș, bază pentru Vârful Moldoveanu." },
         { id: "s14", name: "Cabana Bâlea Lac", massif: "Făgăraș", alt: "2.034 m", type: "Cabană + Salvamont", lat: 45.6036, lng: 24.6168, phone: "0745 072 602", details: "Punct major de acces pe creasta Făgărașului, cu post Salvamont." },
         { id: "s15", name: "Cabana Negoiu", massif: "Făgăraș", alt: "1.546 m", type: "Cabană montană", lat: 45.6295, lng: 24.5440, phone: "0744 585 452", details: "Bază de plecare spre Vârful Negoiu și Custura Sărății." },
-        { id: "s16", name: "Refugiul Fereastra Mare a Sâmbetei", massif: "Făgăraș", alt: "2.188 m", type: "Refugiu alpin", lat: 45.6045, lng: 24.7850, phone: "112", details: "Adăpost de creastă pe traseul spre Vârful Moldoveanu dinspre Sâmbăta." }
+        { id: "s16", name: "Refugiul Fereastra Mare a Sâmbetei", massif: "Făgăraș", alt: "2.188 m", type: "Refugiu alpin", lat: 45.6045, lng: 24.7850, phone: "112", details: "Adăpost de creastă pe traseul spre Vârful Moldoveanu dinspre Sâmbăta." },
+        // ===== Surse de apă (informativ — pot fi secate sau înghețate; ia mereu apă de rezervă) =====
+        { id: "w1", name: "Izvorul principal de la Cabana Curmătura", massif: "Piatra Craiului", alt: "1.470 m", type: "Sursă de apă", lat: 45.5418, lng: 25.2495, phone: "", details: "Izvorul principal de lângă cabană, menționat în ghidul traseului Zărnești – Curmătura. Informativ: poziția e aproximativă (la cabană)." }
       ];
 
       /* ============================================================
@@ -718,7 +767,11 @@
       }
 
       function focusTrail(trail) {
-        if (!trail || !Array.isArray(trail.coords) || trail.coords.length === 0) return;
+        if (!trail) return;
+        if (!Array.isArray(trail.coords) || trail.coords.length < 2) {
+          showToast("Pentru acest traseu linia nu este încă pe hartă. Urmează marcajele din teren.");
+          return;
+        }
         activeTrail = trail;
         map.fitBounds(L.latLngBounds(trail.coords), { padding: [55, 55] });
 
@@ -797,13 +850,14 @@
         document.getElementById("trailsTabCount").textContent = filtered.length;
 
         filtered.forEach((trail) => {
-          if (showTrailsOnMap) {
+          if (showTrailsOnMap && Array.isArray(trail.coords) && trail.coords.length >= 2) {
             const poly = L.polyline(trail.coords, { color: trail.color, weight: 4, opacity: 0.85 }).addTo(trailsGroup);
             poly.bindPopup(`
               <div class="text-xs space-y-1">
                 <div class="font-extrabold text-slate-900">${escapeHtml(trail.name)}</div>
                 <div class="text-slate-600">Masiv: <strong>${escapeHtml(trail.massif)}</strong> · Marcaj: <strong>${escapeHtml(trail.mark)}</strong></div>
                 <div class="text-slate-600">Durată: <strong>${escapeHtml(trail.duration)}</strong> · Dificultate: <strong>${escapeHtml(trail.difficulty)}</strong></div>
+                ${trail.note ? `<div class="text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-2 py-1">⚠️ ${escapeHtml(trail.note)}</div>` : ""}
               </div>
             `);
           }
@@ -823,6 +877,8 @@
               <span>•</span>
               <span>${escapeHtml(trail.difficulty)}</span>
             </div>
+            ${trail.note ? `<div class="text-[11px] text-amber-900 bg-amber-50 border border-amber-200 rounded-lg px-2 py-1 mt-1.5">⚠️ ${escapeHtml(trail.note)}</div>` : ""}
+            ${!(Array.isArray(trail.coords) && trail.coords.length >= 2) ? `<div class="text-[10px] text-slate-500 mt-1">📍 Linia traseului nu este încă pe hartă.</div>` : ""}
           `;
           card.addEventListener("click", () => focusTrail(trail));
           container.appendChild(card);
@@ -851,11 +907,12 @@
         document.getElementById("sheltersTabCount").textContent = filtered.length;
 
         filtered.forEach((shelter) => {
+          const isWater = shelter.type === "Sursă de apă";
           if (showSheltersOnMap) {
             const isRefuge = shelter.type.includes("Refugiu");
             const icon = L.divIcon({
               className: "",
-              html: `<div class="w-8 h-8 rounded-full ${isRefuge ? "bg-sky-600" : "bg-emerald-700"} text-white border-2 border-white shadow-lg flex items-center justify-center text-sm">🏠</div>`,
+              html: `<div class="w-8 h-8 rounded-full ${isWater ? "bg-cyan-500" : isRefuge ? "bg-sky-600" : "bg-emerald-700"} text-white border-2 border-white shadow-lg flex items-center justify-center text-sm">${isWater ? "💧" : "🏠"}</div>`,
               iconSize: [32, 32],
               iconAnchor: [16, 16]
             });
@@ -867,7 +924,7 @@
                   <div class="font-extrabold text-slate-900 text-sm">${escapeHtml(shelter.name)}</div>
                   <div class="text-slate-600">${escapeHtml(shelter.massif)} · <strong>${escapeHtml(shelter.alt)}</strong> (${escapeHtml(shelter.type)})</div>
                   <div class="text-slate-700">${escapeHtml(shelter.details)}</div>
-                  <a href="tel:${encodeURIComponent(shelter.phone)}" class="inline-block mt-1 bg-emerald-700 text-white font-bold px-2.5 py-1 rounded-lg text-[11px]">📞 Sună: ${escapeHtml(shelter.phone)}</a>
+                  ${isWater ? `<div class="text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-2 py-1 text-[11px]">⚠️ Informativ: poate fi redus, secat sau înghețat. Ia apă de rezervă.</div>` : `<a href="tel:${encodeURIComponent(shelter.phone)}" class="inline-block mt-1 bg-emerald-700 text-white font-bold px-2.5 py-1 rounded-lg text-[11px]">📞 Sună: ${escapeHtml(shelter.phone)}</a>`}
                 </div>
               `);
           }
@@ -876,7 +933,7 @@
           card.className = "p-2.5 rounded-2xl border border-slate-200 bg-slate-50/80 hover:bg-sky-50/70 hover:border-sky-300 cursor-pointer transition";
           card.innerHTML = `
             <div class="flex items-center justify-between gap-2">
-              <div class="font-bold text-xs text-slate-900">🏠 ${escapeHtml(shelter.name)}</div>
+              <div class="font-bold text-xs text-slate-900">${isWater ? "💧" : "🏠"} ${escapeHtml(shelter.name)}</div>
               <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-sky-100 text-sky-900">${escapeHtml(shelter.alt)}</span>
             </div>
             <div class="text-[11px] text-slate-500 mt-0.5">${escapeHtml(shelter.massif)} • ${escapeHtml(shelter.type)}</div>
@@ -1265,9 +1322,10 @@
 
       document.getElementById("shareGpsBtn").addEventListener("click", () => {
         const sendPosition = (pt, isExact) => {
-          let nearestShelter = SHELTERS_DATA[0];
+          const SHELTERS_ONLY = SHELTERS_DATA.filter((x) => x.type !== "Sursă de apă");
+          let nearestShelter = SHELTERS_ONLY[0];
           let bestDist = Infinity;
-          SHELTERS_DATA.forEach((sh) => {
+          SHELTERS_ONLY.forEach((sh) => {
             const d = distanceKm(pt.lat, pt.lng, sh.lat, sh.lng);
             if (d < bestDist) {
               bestDist = d;
