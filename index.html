@@ -169,12 +169,15 @@
     <div id="tabContentTrails" class="flex-1 overflow-y-auto p-3 space-y-2.5">
       <div class="flex items-center justify-between gap-2">
         <select id="massifFilterSelect" class="w-full bg-slate-100 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-800 focus:outline-none">
-          <option value="all">Toți munții (Bucegi, Baiului, Făgăraș, Piatra Craiului, Postăvaru, Ciucaș, Ceahlău)</option>
+          <option value="all">Toți munții</option>
           <option value="Bucegi">Munții Bucegi</option>
           <option value="Făgăraș">Munții Făgăraș (Moldoveanu, Negoiu, Podragu)</option>
           <option value="Piatra Craiului">Munții Piatra Craiului</option>
           <option value="Postăvaru">Masivul Postăvaru</option>
           <option value="Baiului">Munții Baiului (Azuga, Predeal, Sinaia)</option>
+          <option value="Iezer-Păpușa">Munții Iezer-Păpușa</option>
+          <option value="Cozia">Munții Cozia</option>
+          <option value="Măcin">Munții Măcinului</option>
           <option value="Ciucaș">Masivul Ciucaș (Muntele Roșu)</option>
           <option value="Ceahlău">Masivul Ceahlău</option>
         </select>
@@ -585,7 +588,31 @@
         { id: "t38", massif: "Baiului", name: "Predeal – Cabana Gârbova – Azuga (peste Clăbucetul Taurului)", mark: "Marcaj neconfirmat — urmează indicatoarele din teren", color: "#64748b", duration: "4h 45m – 6h", difficulty: "Mediu", note: "Aprox. 9,5 km; ~565 m urcare și ~630 m coborâre. Până la Cabana Gârbova se poate urca și cu telescaunul." },
         { id: "t39", massif: "Baiului", name: "Azuga (Valea Azugii) – Drumul lui Ceaușescu – Cabana Susai", mark: "Triunghi Albastru", color: "#2563eb", duration: "Durată neconfirmată", difficulty: "Neconfirmată", note: "Pornește din Azuga pe Valea Azugii (Păstrăvăria Limbășel). Am marcajul din ghid, dar nu și durata sau dificultatea — verifică înainte de plecare." },
         { id: "t40", massif: "Baiului", name: "Bușteni – Culmea Zamora – Vf. Cazacu – Plaiul Orjogoaia – Trăisteni (Valea Doftanei)", mark: "Cruce Roșie", color: "#dc2626", duration: "Durată neconfirmată", difficulty: "Neconfirmată", note: "Orientare grea pe ceață: marcajele sunt aproape inexistente între șaua de sub Vf. lui Petru și pădurea Orjogoaia. Salvamont poate închide traseul iarna. Conform ghidului, pe varianta de sub Vf. Cazacu se întâlnesc două izvoare (informativ; pot fi secate)." },
-        { id: "t41", massif: "Baiului", name: "Creasta Munților Baiului (Azuga – Baiul Mic – Baiul Mare – Piscul Câinelui – Sinaia)", mark: "Bandă Roșie (marcajul principal de creastă)", color: "#dc2626", duration: "Durată neconfirmată", difficulty: "Neconfirmată", note: "Traseul clasic, foarte aglomerat. Drumul de culme ocolește vârfurile mari (Baiul Mare, 1.895 m). Vizibilitate redusă = risc de rătăcire; coborârea spre Sinaia pe Piscul Câinelui (Punct Albastru) e abruptă." }
+        { id: "t41", massif: "Baiului", name: "Creasta Munților Baiului (Azuga – Baiul Mic – Baiul Mare – Piscul Câinelui – Sinaia)", mark: "Bandă Roșie (marcajul principal de creastă)", color: "#dc2626", duration: "Durată neconfirmată", difficulty: "Neconfirmată", note: "Traseul clasic, foarte aglomerat. Drumul de culme ocolește vârfurile mari (Baiul Mare, 1.895 m). Vizibilitate redusă = risc de rătăcire; coborârea spre Sinaia pe Piscul Câinelui (Punct Albastru) e abruptă." },
+
+        // ===== Făgăraș (adăugate) — durate/marcaje din ghidul muntii-nostri.ro; fără linie pe hartă deocamdată =====
+        { id: "t54", massif: "Făgăraș", name: "Sâmbăta de Sus – Cabana Valea Sâmbetei – Fereastra Mare a Sâmbetei", mark: "Triunghi Roșu", color: "#dc2626", duration: "4h 30m – 6h 15m", difficulty: "Mediu-Dificil", note: "Traseu omologat. Aprox. 11,6 km și ~1.590 m urcare. Iarna se recomandă doar până la Cabana Valea Sâmbetei." },
+        { id: "t55", massif: "Făgăraș", name: "Viștișoara – Muchia Drăgușului – Valea Sâmbăta", mark: "Punct Albastru", color: "#2563eb", duration: "6h 45m – 8h 15m", difficulty: "Dificil", note: "Aprox. 13,3 km și ~1.730 m urcare. Leagă Valea Viștișoara de Valea Sâmbetei." },
+        { id: "t56", massif: "Făgăraș", name: "Șaua Capra – Șaua Podragului – Fereastra Mare a Sâmbetei (creasta principală)", mark: "Bandă Roșie (creastă)", color: "#dc2626", duration: "9h 30m – 10h 30m", difficulty: "Dificil", note: "Aprox. 17,4 km, ~1.850 m urcare și ~1.980 m coborâre; cel mai înalt punct 2.487 m. Segment de creastă care ocolește creasta accidentată Vârtopel–Arpășel." },
+        { id: "t57", massif: "Făgăraș", name: "Curmătura Surului – Vf. Șerbota – Șaua Capra (creasta principală)", mark: "Bandă Roșie (creastă)", color: "#dc2626", duration: "10h – 11h 30m", difficulty: "Dificil", note: "Aprox. 19,8 km și ~2.110 m urcare. Sub Cornul Călțunului există loc de campare cu refugiu Salvamont." },
+
+        // ===== Iezer-Păpușa — fără linie pe hartă deocamdată =====
+        { id: "t42", massif: "Iezer-Păpușa", name: "Cabana Voina – Curmătura Bătrâna – Cabana Voina (circuit de creastă Iezer-Păpușa)", mark: "Bandă Roșie", color: "#dc2626", duration: "14h 30m – 15h 45m", difficulty: "Dificil", note: "Aprox. 34 km și ~2.260 m urcare; cel mai înalt punct 2.470 m (Vf. Roșu). Marcaj bun până pe Vf. Roșu, rezonabil până pe Vf. Păpușa, rar în zona Vf. Găinațu." },
+        { id: "t43", massif: "Iezer-Păpușa", name: "Cabana Voina – Muntele Iezeru Mare – Refugiul Iezer", mark: "Cruce Albastră", color: "#2563eb", duration: "4h – 4h 30m", difficulty: "Mediu-Dificil", note: "Aprox. 8,4 km și ~1.370 m urcare. Aceasta este varianta de iarnă (pe culme); vara se poate urca și pe firul văii Iezerul. Marcaj rezonabil." },
+        { id: "t44", massif: "Iezer-Păpușa", name: "Cabana Voina – Plaiul lui Pătru – sub Vf. Bătrâna", mark: "Triunghi Roșu", color: "#dc2626", duration: "3h – 4h", difficulty: "Mediu", note: "Aprox. 7,4 km și ~1.300 m urcare. Stâlpi de marcaj în golul alpin. Iarna se recomandă doar până la stânele din Plaiul lui Pătru; mai sus trebuie echipament de alpinism de iarnă sau schi de tură." },
+        { id: "t45", massif: "Iezer-Păpușa", name: "Cabana Cascoe – Cabana Cuca – Cabana Voina", mark: "Triunghi Galben", color: "#eab308", duration: "8h 45m – 9h 45m", difficulty: "Mediu-Dificil", note: "Aprox. 18,5 km și ~1.690 m urcare. Marcaj rar." },
+        { id: "t46", massif: "Iezer-Păpușa", name: "Bahna Rusului – Curmătura Păpău – Vf. Iezeru Mic", mark: "Triunghi Roșu", color: "#dc2626", duration: "11h 45m – 14h", difficulty: "Dificil", note: "Aprox. 32,5 km și ~2.220 m urcare; drum pastoral puțin frecventat de turiști. Iarna, sectorul Păpău – M. Groapele – Iezerul Mic cere echipament de alpinism sau schi de tură." },
+
+        // ===== Munții Măcinului — fără linie pe hartă deocamdată =====
+        { id: "t47", massif: "Măcin", name: "Măcin – Vf. Suluku Mare – Vf. Caramalău – Măcin (Culmea Pricopanului)", mark: "Bandă Albastră", color: "#2563eb", duration: "5h 30m – 5h 45m", difficulty: "Mediu", note: "Aprox. 14 km și ~570 m urcare. Marcaje rare până la intrarea în parcul național." },
+        { id: "t48", massif: "Măcin", name: "Greci – Vf. Țuțuiatu (467 m) – Luncavița", mark: "Triunghi Albastru", color: "#2563eb", duration: "~7h", difficulty: "Mediu", note: "Aprox. 19,3 km și ~570 m urcare. Țuțuiatu este cel mai înalt vârf din Munții Măcinului." },
+        { id: "t49", massif: "Măcin", name: "Greci – sub Vf. Cartalu – Greci (Poveștile Măcinului)", mark: "Punct Albastru", color: "#2563eb", duration: "2h 45m – 3h", difficulty: "Mediu", note: "Circuit tematic de aprox. 8 km, ~260 m urcare." },
+
+        // ===== Munții Cozia — fără linie pe hartă deocamdată =====
+        { id: "t50", massif: "Cozia", name: "Halta CFR Mănăstirea Turnu – Cabana Cozia – sat Pripoare (traseu de creastă)", mark: "Bandă Roșie", color: "#dc2626", duration: "8h – 8h 30m", difficulty: "Dificil", note: "Aprox. 18,5 km și ~1.610 m urcare." },
+        { id: "t51", massif: "Cozia", name: "Gara CFR Mănăstirea Turnu – Refugiul Turneanu – Cabana Cozia", mark: "Marcaje TR / BR dinspre Mănăstirea Turnu", color: "#dc2626", duration: "3h 30m – 4h 30m", difficulty: "Dificil", note: "Aprox. 6,2 km și ~1.310 m urcare. Zonă care cere atenție sporită iarna sau pe ploaie." },
+        { id: "t52", massif: "Cozia", name: "Gara CFR Lotru – Muchia Urzica – Cabana Cozia", mark: "Bandă Albastră", color: "#2563eb", duration: "3h 30m – 4h", difficulty: "Dificil", note: "Aprox. 8,6 km și ~1.390 m urcare." },
+        { id: "t53", massif: "Cozia", name: "Căciulata – Valea Păușa – Mănăstirea Stânișoara", mark: "Cruce Albastră", color: "#2563eb", duration: "~2h", difficulty: "Mediu", note: "Aprox. 7,1 km și ~520 m urcare. Cel mai ușor acces spre Mănăstirea Stânișoara; poate fi făcut și cu mașina cu gardă normală sau cu bicicleta." }
       ];
 
       /* ============================================================
@@ -711,25 +738,56 @@
         setSyncState("offline", "Hartă live indisponibilă — vezi doar semnalările de bază");
       }
 
+      // Limită de spam: o semnalare la 2 minute pentru fiecare utilizator (aceeași valoare în regulile Firebase)
+      const REPORT_COOLDOWN_MS = 120000;
+      function reportCooldownLeftMs() {
+        try {
+          const last = parseInt(localStorage.getItem("hb_last_report") || "0", 10);
+          return Math.max(0, REPORT_COOLDOWN_MS - (Date.now() - last));
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      // Returnează true dacă trimiterea a pornit, false dacă a fost oprită (formularul rămâne deschis)
       function publishSightingToCloud(sighting) {
         if (!sightingsRef) {
           showToast("Hartă live indisponibilă — alerta NU a putut fi publicată.");
-          return;
+          return false;
         }
-        const { id, ...data } = sighting;
         if (!authReady) {
           showToast("Autentificare indisponibilă — alerta NU a putut fi publicată.");
-          return;
+          return false;
         }
+        const wait = reportCooldownLeftMs();
+        if (wait > 0) {
+          showToast(`Ai trimis o semnalare de curând. Poți trimite următoarea peste ${Math.ceil(wait / 1000)} secunde.`);
+          return false;
+        }
+        const { id, ...data } = sighting;
         authReady
           .then((cred) => {
             // Ora serverului (nu poate fi falsificată) + identificatorul anonim al autorului
             data.timestamp = firebase.database.ServerValue.TIMESTAMP;
             data.uid = cred.user.uid;
-            return sightingsRef.child(id).set(data);
+            // Scriere atomică: semnalarea + ora ultimei trimiteri a acestui utilizator (pe care o verifică regulile)
+            const updates = {};
+            updates["bearSightings/" + id] = data;
+            updates["userLastReport/" + cred.user.uid] = firebase.database.ServerValue.TIMESTAMP;
+            return db.ref().update(updates);
           })
-          .then(() => showToast("Alerta a fost publicată LIVE pentru toți drumeții! 📡"))
-          .catch(() => showToast("Publicarea a eșuat — verifică conexiunea la internet."));
+          .then(() => {
+            try { localStorage.setItem("hb_last_report", String(Date.now())); } catch (e) { /* ignorat */ }
+            showToast("Alerta a fost publicată LIVE pentru toți drumeții! 📡");
+          })
+          .catch((err) => {
+            if (err && err.code === "PERMISSION_DENIED") {
+              showToast("Semnalarea a fost respinsă. Dacă ai trimis alta acum câteva minute, așteaptă 2 minute între semnalări.");
+            } else {
+              showToast("Publicarea a eșuat — verifică conexiunea la internet.");
+            }
+          });
+        return true;
       }
 
       /* ============================================================
@@ -741,6 +799,11 @@
 
       let activeFilter = "all";
       let searchQuery = "";
+      let searchRaw = "";
+      // Căutare fără diacritice: „malaiesti” găsește „Mălăiești”, „postavaru” găsește „Postăvaru” (și ș/ş, ț/ţ)
+      function normSearch(str) {
+        return String(str == null ? "" : str).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+      }
       let userGpsCoords = null;
       let userGpsMarker = null;
       let activeTrail = null;
@@ -841,13 +904,17 @@
         const filtered = TRAILS_DATA.filter((t) => {
           const matchMassif = selectedMassif === "all" || t.massif === selectedMassif;
           const matchSearch = !searchQuery ||
-            t.name.toLowerCase().includes(searchQuery) ||
-            t.massif.toLowerCase().includes(searchQuery) ||
-            t.mark.toLowerCase().includes(searchQuery);
+            normSearch(t.name).includes(searchQuery) ||
+            normSearch(t.massif).includes(searchQuery) ||
+            normSearch(t.mark).includes(searchQuery) ||
+            normSearch(t.note).includes(searchQuery);
           return matchMassif && matchSearch;
         });
 
         document.getElementById("trailsTabCount").textContent = filtered.length;
+        if (!filtered.length) {
+          container.innerHTML = `<div class="text-center text-xs text-slate-500 py-6">${searchRaw ? "Niciun traseu găsit pentru „" + escapeHtml(searchRaw) + "”. Încearcă alt cuvânt." : "Niciun traseu de afișat."}</div>`;
+        }
 
         filtered.forEach((trail) => {
           if (showTrailsOnMap && Array.isArray(trail.coords) && trail.coords.length >= 2) {
@@ -899,12 +966,16 @@
         const filtered = SHELTERS_DATA.filter((s) => {
           const matchMassif = selectedShelterMassif === "all" || s.massif === selectedShelterMassif;
           const matchSearch = !searchQuery ||
-            s.name.toLowerCase().includes(searchQuery) ||
-            s.massif.toLowerCase().includes(searchQuery);
+            normSearch(s.name).includes(searchQuery) ||
+            normSearch(s.massif).includes(searchQuery) ||
+            normSearch(s.type).includes(searchQuery);
           return matchMassif && matchSearch;
         });
 
         document.getElementById("sheltersTabCount").textContent = filtered.length;
+        if (!filtered.length) {
+          container.innerHTML = `<div class="text-center text-xs text-slate-500 py-6">${searchRaw ? "Niciun refugiu sau sursă de apă găsită pentru „" + escapeHtml(searchRaw) + "”." : "Nimic de afișat."}</div>`;
+        }
 
         filtered.forEach((shelter) => {
           const isWater = shelter.type === "Sursă de apă";
@@ -971,11 +1042,14 @@
         const filtered = bearSightings.filter((b) => {
           if (activeFilter === "24h" && Date.now() - b.timestamp > 24 * 3600 * 1000) return false;
           if (activeFilter === "high" && b.severity !== "high") return false;
-          if (searchQuery && !b.location.toLowerCase().includes(searchQuery) && !b.type.toLowerCase().includes(searchQuery)) return false;
+          if (searchQuery && !normSearch(b.location).includes(searchQuery) && !normSearch(b.type).includes(searchQuery) && !normSearch(b.notes).includes(searchQuery)) return false;
           return true;
         });
 
         document.getElementById("bearsTabCount").textContent = filtered.length;
+        if (!filtered.length) {
+          container.innerHTML = `<div class="text-center text-xs text-slate-500 py-6">${searchRaw ? "Nicio semnalare găsită pentru „" + escapeHtml(searchRaw) + "”." : "Nu există semnalări active acum."}</div>`;
+        }
 
         filtered.forEach((bear) => {
           const sev = bear.severity === "high" || bear.severity === "medium" ? bear.severity : "low";
@@ -1166,7 +1240,8 @@
       const clearSearchBtn = document.getElementById("clearSearchBtn");
 
       const applySearch = debounce(() => {
-        searchQuery = searchInput.value.trim().toLowerCase();
+        searchRaw = searchInput.value.trim();
+        searchQuery = normSearch(searchRaw);
         clearSearchBtn.classList.toggle("hidden", !searchQuery);
         renderAllMapData();
       }, 250);
@@ -1174,6 +1249,7 @@
       searchInput.addEventListener("input", applySearch);
       clearSearchBtn.addEventListener("click", () => {
         searchInput.value = "";
+        searchRaw = "";
         searchQuery = "";
         clearSearchBtn.classList.add("hidden");
         renderAllMapData();
@@ -1269,7 +1345,7 @@
           lat, lng, notes,
           timestamp: Date.now()
         };
-        publishSightingToCloud(newSighting);
+        if (!publishSightingToCloud(newSighting)) return; // oprit (limită / fără conexiune): formularul rămâne deschis
         reportModal.classList.add("hidden");
         document.getElementById("bearReportForm").reset();
         map.setView([newSighting.lat, newSighting.lng], 14);
