@@ -231,6 +231,13 @@
           <option value="Piatra Craiului">Munții Piatra Craiului</option>
           <option value="Postăvaru">Masivul Postăvaru</option>
           <option value="Ceahlău">Masivul Ceahlău</option>
+                  <option value="Iezer-Păpușa">Munții Iezer-Păpușa</option>
+          <option value="Piatra Mare">Munții Piatra Mare</option>
+          <option value="Rodna">Munții Rodnei</option>
+          <option value="Maramureș">Munții Maramureșului</option>
+          <option value="Nemira">Munții Nemira</option>
+          <option value="Călimani">Munții Călimani</option>
+          <option value="Retezat">Munții Retezat</option>
         </select>
       </div>
       <div id="sheltersListContainer" class="space-y-2"></div>
@@ -636,7 +643,25 @@
         { id: "s15", name: "Cabana Negoiu", massif: "Făgăraș", alt: "1.546 m", type: "Cabană montană", lat: 45.6295, lng: 24.5440, phone: "0744 585 452", details: "Bază de plecare spre Vârful Negoiu și Custura Sărății." },
         { id: "s16", name: "Refugiul Fereastra Mare a Sâmbetei", massif: "Făgăraș", alt: "2.188 m", type: "Refugiu alpin", lat: 45.6045, lng: 24.7850, phone: "112", details: "Adăpost de creastă pe traseul spre Vârful Moldoveanu dinspre Sâmbăta." },
         // ===== Surse de apă (informativ — pot fi secate sau înghețate; ia mereu apă de rezervă) =====
-        { id: "w1", name: "Izvorul principal de la Cabana Curmătura", massif: "Piatra Craiului", alt: "1.470 m", type: "Sursă de apă", lat: 45.5418, lng: 25.2495, phone: "", details: "Izvorul principal de lângă cabană, menționat în ghidul traseului Zărnești – Curmătura. Informativ: poziția e aproximativă (la cabană)." }
+        { id: "w1", name: "Izvorul principal de la Cabana Curmătura", massif: "Piatra Craiului", alt: "1.470 m", type: "Sursă de apă", lat: 45.5418, lng: 25.2495, phone: "", details: "Izvorul principal de lângă cabană, menționat în ghidul traseului Zărnești – Curmătura. Informativ: poziția e aproximativă (la cabană)." },
+        // ===== Refugiile Speranței (adăposturi de urgență cu cod 112) — fără poziție pe hartă deocamdată =====
+        { id: "r1", name: "Refugiul Speranței – Cerdacul Văii Cerbului", massif: "Bucegi", alt: "2.350 m", type: "Refugiu de urgență (cod 112)", phone: "112", details: "Container de urgență montat în august 2025, la intrarea în Cerdacul Văii Cerbului, pe traseul spre Vf. Omu (primul din cele 12 ale proiectului „Refugiile Speranței”). Acces doar cu cod primit prin 112. A fost relatat un caz în care turiști au rămas în furtună în fața unui refugiu încuiat din Bucegi: nu te baza doar pe el și sună la 112 din timp. Poziția exactă nu e încă pe hartă." },
+        { id: "r2", name: "Refugiul Speranței – Vf. Pop Ivan", massif: "Maramureș", alt: "~1.850 m", type: "Refugiu de urgență (cod 112)", phone: "112", details: "Container de urgență montat în 2026 pe Vf. Pop Ivan, în Munții Maramureșului. Accesul se face cu cod comunicat de Salvamont, la apel prin 112. Poziția exactă nu e încă pe hartă." },
+        { id: "r3", name: "Refugiul Speranței – Lacul Galbena (anunțat)", massif: "Făgăraș", alt: "altitudine neconfirmată", type: "Refugiu de urgență (cod 112)", phone: "112", details: "Anunțat de Salvamont Argeș în octombrie 2026: 4 persoane, energie electrică, Wi-Fi, prize. Acces doar prin 112, cu cod unic valabil 12 ore. Verifică dacă a fost deja instalat. Poziția exactă nu e încă pe hartă." },
+        { id: "r4", name: "Refugiul Speranței – Vf. Bătrâna (anunțat)", massif: "Iezer-Păpușa", alt: "altitudine neconfirmată", type: "Refugiu de urgență (cod 112)", phone: "112", details: "Anunțat de Salvamont Argeș în octombrie 2026: 4 persoane, energie electrică, Wi-Fi, prize. Acces doar prin 112, cu cod unic valabil 12 ore. Verifică dacă a fost deja instalat. Poziția exactă nu e încă pe hartă." },
+        // ===== Surse de apă furnizate de proprietarul aplicației (neverificate în teren) =====
+        { id: "w2", name: "Izvor sub Vf. Mic", massif: "Nemira", alt: "altitudine neconfirmată", type: "Sursă de apă", kind: "spring", lat: 46.11596, lng: 25.93512, phone: "", details: "Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w3", name: "Izvor sub Piatra Șoimilor", massif: "Nemira", alt: "altitudine neconfirmată", type: "Sursă de apă", kind: "spring", lat: 46.14295, lng: 25.85954, phone: "", details: "Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w4", name: "Izvorul Sentinela", massif: "Călimani", alt: "altitudine neconfirmată", type: "Sursă de apă", kind: "spring", lat: 47.34407, lng: 25.35527, phone: "", details: "Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w5", name: "Pârâul de lângă Lacul Avrig", massif: "Făgăraș", alt: "altitudine neconfirmată", type: "Sursă de apă", kind: "stream", lat: 45.57849, lng: 24.48198, phone: "", details: "Coordonata este a lacului; pârâul e în apropiere. Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w6", name: "Izvoarele Lacului Capra", massif: "Făgăraș", alt: "altitudine neconfirmată", type: "Sursă de apă", kind: "spring", lat: 45.60054, lng: 24.62771, phone: "", details: "Coordonata este a lacului; izvoarele sunt în apropiere. Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w7", name: "Izvoarele de la Portița Viștei", massif: "Făgăraș", alt: "altitudine neconfirmată", type: "Sursă de apă", kind: "spring", lat: 45.60459, lng: 24.74248, phone: "", details: "Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w8", name: "Izvorul Bistriței Aurii (zona Lacului Știol)", massif: "Rodna", alt: "~1.650 m", type: "Sursă de apă", kind: "spring", lat: 47.572778, lng: 24.813611, phone: "", details: "Coordonatele sunt publicate pentru zona lacului Știol, de unde izvorăște Bistrița Aurie. Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w9", name: "Izvoarele Cascadei Cailor", massif: "Rodna", alt: "altitudine neconfirmată", type: "Sursă de apă", kind: "spring", lat: 47.583861, lng: 24.797056, phone: "", details: "Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w10", name: "Izvor lângă Cabana Piatra Mare (Dâmbul Morii)", massif: "Piatra Mare", alt: "altitudine neconfirmată", type: "Sursă de apă", kind: "spring", lat: 45.55775, lng: 25.654567, phone: "", details: "Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w11", name: "Pârâul Șipoaia (Canionul 7 Scări)", massif: "Piatra Mare", alt: "~1.515 m", type: "Sursă de apă", kind: "stream", lat: 45.5575, lng: 25.63472, phone: "", details: "Curs de apă natural, nu izvor amenajat. Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w12", name: "Izvor la granița Retezat – Godeanu", massif: "Retezat", alt: "altitudine neconfirmată", type: "Sursă de apă", kind: "spring", lat: 45.281368, lng: 22.823532, phone: "", details: "Identificat prin observație directă și fotografie, după sursa furnizată. Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." },
+        { id: "w13", name: "Fântâna lui Rățâfoi (lângă Refugiul La Cărți)", massif: "Rodna", alt: "altitudine neconfirmată", type: "Sursă de apă", kind: "spring", lat: 47.55627, lng: 24.67035, phone: "", details: "Coordonatele sunt ale Refugiului La Cărți; izvorul e la ~100 m spre nord-vest. Sursă furnizată de proprietarul aplicației, neverificată de mine în teren; poziția poate fi aproximativă. Apa din natură nu este garantat potabilă: tratează-o (fierbe/filtrează) și ia apă de rezervă." }
       ];
 
       /* ============================================================
@@ -802,7 +827,7 @@
       let searchRaw = "";
       // Căutare fără diacritice: „malaiesti” găsește „Mălăiești”, „postavaru” găsește „Postăvaru” (și ș/ş, ț/ţ)
       function normSearch(str) {
-        return String(str == null ? "" : str).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        return String(str == null ? "" : str).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/izvoar/g, "izvor"); // „izvor” găsește și „izvoarele”
       }
       let userGpsCoords = null;
       let userGpsMarker = null;
@@ -979,11 +1004,13 @@
 
         filtered.forEach((shelter) => {
           const isWater = shelter.type === "Sursă de apă";
-          if (showSheltersOnMap) {
+          const emoji = isWater ? ((shelter.kind === "stream" || shelter.kind === "lake") ? "🌊" : "💧") : "🏠";
+          const hasPos = Number.isFinite(shelter.lat) && Number.isFinite(shelter.lng);
+          if (showSheltersOnMap && hasPos) {
             const isRefuge = shelter.type.includes("Refugiu");
             const icon = L.divIcon({
               className: "",
-              html: `<div class="w-8 h-8 rounded-full ${isWater ? "bg-cyan-500" : isRefuge ? "bg-sky-600" : "bg-emerald-700"} text-white border-2 border-white shadow-lg flex items-center justify-center text-sm">${isWater ? "💧" : "🏠"}</div>`,
+              html: `<div class="w-8 h-8 rounded-full ${isWater ? "bg-cyan-500" : isRefuge ? "bg-sky-600" : "bg-emerald-700"} text-white border-2 border-white shadow-lg flex items-center justify-center text-sm">${emoji}</div>`,
               iconSize: [32, 32],
               iconAnchor: [16, 16]
             });
@@ -1004,13 +1031,22 @@
           card.className = "p-2.5 rounded-2xl border border-slate-200 bg-slate-50/80 hover:bg-sky-50/70 hover:border-sky-300 cursor-pointer transition";
           card.innerHTML = `
             <div class="flex items-center justify-between gap-2">
-              <div class="font-bold text-xs text-slate-900">${isWater ? "💧" : "🏠"} ${escapeHtml(shelter.name)}</div>
+              <div class="font-bold text-xs text-slate-900">${emoji} ${escapeHtml(shelter.name)}</div>
               <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-sky-100 text-sky-900">${escapeHtml(shelter.alt)}</span>
             </div>
             <div class="text-[11px] text-slate-500 mt-0.5">${escapeHtml(shelter.massif)} • ${escapeHtml(shelter.type)}</div>
             <div class="text-[11px] text-slate-700 mt-1">${escapeHtml(shelter.details)}</div>
           `;
-          card.addEventListener("click", () => map.setView([shelter.lat, shelter.lng], 14));
+          if (!hasPos) {
+            card.innerHTML += `<div class="text-[10px] text-slate-500 mt-1">📍 Poziția nu este încă pe hartă.</div>`;
+          }
+          card.addEventListener("click", () => {
+            if (!hasPos) {
+              showToast("Poziția acestui punct nu este încă pe hartă.");
+              return;
+            }
+            map.setView([shelter.lat, shelter.lng], 14);
+          });
           container.appendChild(card);
         });
       }
@@ -1048,7 +1084,7 @@
 
         document.getElementById("bearsTabCount").textContent = filtered.length;
         if (!filtered.length) {
-          container.innerHTML = `<div class="text-center text-xs text-slate-500 py-6">${searchRaw ? "Nicio semnalare găsită pentru „" + escapeHtml(searchRaw) + "”." : "Nu există semnalări active acum."}</div>`;
+          container.innerHTML = `<div class="text-center text-xs text-slate-500 py-6">${searchRaw ? "Nicio semnalare găsită pentru „" + escapeHtml(searchRaw) + "”." : (navigator.onLine === false ? "Ești offline — semnalările LIVE nu se pot încărca." : "Nu există semnalări active acum.")}</div>`;
         }
 
         filtered.forEach((bear) => {
@@ -1398,7 +1434,7 @@
 
       document.getElementById("shareGpsBtn").addEventListener("click", () => {
         const sendPosition = (pt, isExact) => {
-          const SHELTERS_ONLY = SHELTERS_DATA.filter((x) => x.type !== "Sursă de apă");
+          const SHELTERS_ONLY = SHELTERS_DATA.filter((x) => x.type !== "Sursă de apă" && Number.isFinite(x.lat) && Number.isFinite(x.lng));
           let nearestShelter = SHELTERS_ONLY[0];
           let bestDist = Infinity;
           SHELTERS_ONLY.forEach((sh) => {
@@ -1740,6 +1776,8 @@
       /* ============================================================
          APLICAȚIE PE TELEFON (PWA): service worker pentru instalare și pornire rapidă
          ============================================================ */
+      window.addEventListener("offline", () => showToast("Ești offline. Traseele, refugiile și sursele de apă merg în continuare; semnalările LIVE nu se actualizează."));
+      window.addEventListener("online", () => showToast("Conexiune revenită. Semnalările LIVE se actualizează."));
       if ("serviceWorker" in navigator && location.protocol === "https:") {
         window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
       }
