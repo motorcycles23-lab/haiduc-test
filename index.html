@@ -1145,7 +1145,55 @@
         renderShelters();
         renderBears();
       }
+/* ============================================================
+         FILTRE COLAPSABILE — buton ⚙️ Filtre
+         ============================================================ */
+      (function () {
+        const firstChip = document.querySelector(".filter-chip");
+        if (!firstChip) return;
+        const chipsRow = firstChip.parentElement;
+        if (!chipsRow || !chipsRow.parentElement) return;
 
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.title = "Arată/ascunde filtrele";
+        btn.className = "bg-[#143624] text-white px-3.5 py-1.5 rounded-full text-xs font-bold shadow-md flex items-center gap-1.5 whitespace-nowrap transition active:scale-95";
+        btn.innerHTML = '<span>⚙️</span><span>Filtre</span>';
+        const badge = document.createElement("span");
+        badge.style.display = "none";
+        badge.className = "bg-white/25 px-1.5 py-0.5 rounded-full text-[10px] font-extrabold max-w-[110px] truncate";
+        btn.appendChild(badge);
+
+        const holder = document.createElement("div");
+        holder.className = "pointer-events-auto flex items-center gap-1.5";
+        chipsRow.parentElement.insertBefore(holder, chipsRow);
+        holder.appendChild(btn);
+        holder.appendChild(chipsRow);
+        chipsRow.style.display = "none";
+
+        function setOpen(open) {
+          chipsRow.style.display = open ? "flex" : "none";
+        }
+
+        btn.addEventListener("click", () => {
+          setOpen(chipsRow.style.display === "none");
+        });
+
+        document.addEventListener("click", (e) => {
+          const chip = e.target.closest ? e.target.closest(".filter-chip") : null;
+          if (chip) {
+            setOpen(false);
+            if (chip.dataset.filter === "all") {
+              badge.style.display = "none";
+            } else {
+              badge.textContent = chip.textContent.trim();
+              badge.style.display = "inline-block";
+            }
+          } else if (!holder.contains(e.target)) {
+            setOpen(false);
+          }
+        });
+      })();
       /* ============================================================
          12. VERIFICARE PROXIMITATE GPS (< 1 km față de un urs semnalat)
          ============================================================ */
