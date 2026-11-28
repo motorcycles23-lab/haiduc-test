@@ -1830,12 +1830,33 @@
         window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
       }
     });
-  </script>
-  <a href="https://motorcycles23-lab.github.io/haiduc-test/">
- <img src="icon-512.png"
-     alt="Deschide aplicația"
-     style="width:120px; height:120px; border-radius:24px;">
-          
-      </a>
+</script>
+<button id="install-button" type="button"
+  style="position:fixed; right:16px; bottom:16px; z-index:10000; border:0; padding:0; background:none; cursor:pointer;">
+  <img src="icon-512.png"
+       alt="Instalează aplicația"
+       style="width:120px; height:120px; border-radius:24px;">
+</button>
+  <script>
+  let deferredPrompt;
+  const installButton = document.getElementById("install-button");
+
+  installButton.hidden = true;
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredPrompt = event;
+    installButton.hidden = false;
+  });
+
+  installButton.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installButton.hidden = true;
+  });
+</script>
 </body>
 </html>
